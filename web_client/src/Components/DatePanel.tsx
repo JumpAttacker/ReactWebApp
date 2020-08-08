@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Select from 'react-dropdown-select';
 import styles from './dataPanel.module.css'
 import {orderBy} from "lodash"
-import Constants from "../Constants/Constants";
+import useDate from "../Hooks/useDate";
 
 const moment = require('moment');
 moment.locale('en');
@@ -27,7 +27,7 @@ const DatePanel = () => {
     const [month, setMonth] = useState({name: ''})
     const [day, setDay] = useState({day: 1})
     const [dayOfTheWeek, setDatOfTheWeek] = useState('unknown')
-    const [isLoading, setLoading] = useState(false)
+    const {isLoading, GetDateFromServer} = useDate()
 
     const months = moment.months().map((name: string) => {
         return {name: name}
@@ -68,19 +68,12 @@ const DatePanel = () => {
 
 
     const onClick = async () => {
-        try {
-            setLoading(true)
-            const data = await fetch(Constants.fetchUrl);
-            if (data.ok) {
-                const {day, month, year}: IFetchDate = await data.json();
-                setYear({year})
-                setDay({day})
-                setMonth({name: months[month - 1].name})
-            }
-        } catch (e) {
-            throw e
-        } finally {
-            setLoading(false)
+        const data: IFetchDate = await GetDateFromServer();
+        if (data) {
+            const {day, month, year} = data;
+            setYear({year})
+            setDay({day})
+            setMonth({name: months[month - 1].name})
         }
     }
 
