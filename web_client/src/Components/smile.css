@@ -1,0 +1,68 @@
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+#smile {
+    position: relative;
+    /*z-index: 0;*/
+    background-color: yellow;
+    border: 6px solid #222;
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    margin: 50px auto;
+    box-shadow: 2px 2px 1px #B8B8B8;
+    animation: 5s fadeIn;
+    animation-fill-mode: forwards;
+    opacity: 0
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.eye {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    background: #222;
+    margin-top: 35px;
+    margin-left: 33px;
+    cursor: pointer;
+    transition: 1s linear;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.eye:hover {
+    opacity: .0;
+}
+
+.eye.right {
+    margin-left: 0;
+    margin-right: 33px;
+}
+
+.mouth {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 110px;
+    width: 115px;
+    margin: 0 auto;
+    border-bottom: 8px solid #222;
+    border-radius: 100%;
+}
