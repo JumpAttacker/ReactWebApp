@@ -107,7 +107,7 @@ const DatePanel = () => {
 
             <h3>{dayOfTheWeek}</h3>
 
-            <button onClick={onClick}>
+            <button onClick={onClick} disabled={isLoading}>
                 {isLoading ? 'loading...' : 'Get date from server'}
             </button>
         </>
